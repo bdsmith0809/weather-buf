@@ -15,7 +15,8 @@ Note there are some functions in weatherbuf.rs that are covered by unit tests,
 but not necessarily used in the main.rs. These unused functions may show as warnings
 when building the crate.
 
-Note this is an entirely novice effort, as I try to learn Rust!
+Note this is an entirely novice effort, as I try to learn Rust! This software is for 
+educational purposes only. No guarantee provided for its correctness or utility.
 
 # Usage:
 
@@ -34,18 +35,17 @@ Note this is an entirely novice effort, as I try to learn Rust!
         for reported WeatherData messages. In listener appmode, this address/port will be
         the destination address, monitored for arriving WeatherData messages.
 
-This software is for educational purposes only. No guarantee provided for its correctness
-or utility.
+
 
 # Example use case:
 
 1) In a terminal, start the listener mode app at the destination address/port:
 
-    weather-buf listener 127.0.0.1:3456
+    ```weather-buf listener 127.0.0.1:3456```
 
 2) In a different terminal, start the reporter mode app, sending messages to the destination:
 
-    weather-buf reporter 127.0.0.1:3456
+    ```weather-buf reporter 127.0.0.1:3456```
 
 3) The reporter app should begin sending messages at a prescribed rate.
 
