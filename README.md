@@ -5,7 +5,7 @@ This is an example program using some basic Rust concepts:
 - UDP communication between a streaming broadcaster and a listener
 - protobuf messages compiled into Rust using prost and prost-build
 - a sleep function to control the interval at which messages are generated
-- File I/O to record received messages to a json and a binary file
+- File I/O to record received messages to a binary file
 
 The weather.proto file demonstrates a very trivial example message containing
 basic weather data. It has no significance to any real-world weather reporting
