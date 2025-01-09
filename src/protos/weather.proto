@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package messages;
+
+message WeatherData {
+  optional string station_name = 1;
+  optional double temperature = 2;
+  optional float relative_humidity = 3;
+  optional double wind_speed = 4;
+  optional string wind_direction = 5;
+}
