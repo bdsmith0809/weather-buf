@@ -1,3 +1,22 @@
+/*
+weather-buf  A simple program showing protobuf implementation in Rust.
+
+    Copyright (C) 2024  Brian Smith
+
+    This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*/
+
 mod weatherbuf;
 
 use clap::{arg, Command};
@@ -35,49 +54,4 @@ fn main() {
         println!("Valid appmode option is 'reporter' or 'listener'.");
     }
     
-}
-
-#[cfg(test)]
-mod test {
-
-    use std::path;
-    use super::weatherbuf;
-
-    /// Test writing and reading WeatherData messages from a file. This test
-    /// is basically the same as a similar test in weatherbuf.rs.
-    #[test]
-    fn test_file_write() {
-
-        println!("Hello protobuf!");
-        let infilename = path::Path::new("./_tmp_messages_written.bin");
-                
-        let num_msg = 10;
-        for _ii in 0..num_msg {
-            let this_msg = weatherbuf::weather::generate_weather_msg();
-            match weatherbuf::weather::write_msg_to_file(infilename, this_msg) {
-                Ok(_) => (),
-                Err(e) => panic!("Unable to write to file: {}", e)
-            };
-        }
-
-        let msg_vec = match weatherbuf::weather::read_msgs_from_file(infilename){
-            Ok(msg_vec) => msg_vec,
-            Err(e) => panic!("Help me: {}", e)
-        };
-
-        for the_msg in msg_vec.iter() {
-            weatherbuf::weather::print_msg(the_msg);
-        }
-
-        assert!(msg_vec.len() == num_msg as usize);
-
-        if infilename.exists() {
-            match std::fs::remove_file(infilename) {
-                Ok(_) => (),
-                Err(e) => panic!("Unable to delete existing temp file: {}", e)
-            };
-        }
-
-    }
-
 }
